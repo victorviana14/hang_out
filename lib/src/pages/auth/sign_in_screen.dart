@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hang_out/src/auth/components/custom_text_field.dart';
-import 'package:hang_out/src/auth/singn_up_screen.dart';
-import 'package:hang_out/src/base/base_screen.dart';
+
+import 'package:hang_out/src/pages/auth/singn_up_screen.dart';
+
+import '../base/base_screen.dart';
+import 'components/custom_text_field.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({Key? key}) : super(key: key);

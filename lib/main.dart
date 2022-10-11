@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hang_out/src/auth/sign_in_screen.dart';
+
+import 'package:hang_out/src/pages/auth/sign_in_screen.dart';
 
 void main() {
   runApp(const MyApp());

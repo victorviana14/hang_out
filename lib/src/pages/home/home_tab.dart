@@ -2,16 +2,20 @@ import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 
 import 'components/category_tile.dart';
+import 'package:hang_out/src/config/app_data.dart' as appData;
 
-class HomeTab extends StatelessWidget {
-  HomeTab({Key? key}) : super(key: key);
+class HomeTab extends StatefulWidget {
+  const HomeTab({Key? key}) : super(key: key);
 
-  List<String> categories = [
-    "Hamburguers",
-    "Porções",
-    "Bebidas",
-    "Aperitivos",
-  ];
+  @override
+  State<HomeTab> createState() => _HomeTabState();
+}
+
+class _HomeTabState extends State<HomeTab> {
+
+
+
+  String selectedCategory = 'Hamburguers';
 
   @override
   Widget build(BuildContext context) {
@@ -83,20 +87,46 @@ class HomeTab extends StatelessWidget {
             ),
           ),
           //Categorias
-          SizedBox(
+          Container(
+            padding: const EdgeInsets.only(left: 10),
             height: 40,
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
               itemBuilder: (_, index) {
                 return CategoryTile(
-                  category: categories[index],
-                  isSelected: false,
+                  onPressed: (){
+                    setState(() {
+                      selectedCategory = appData.categories[index];
+
+                    });
+                  },
+                  category: appData.categories[index],
+                  isSelected: appData.categories[index] == selectedCategory,
                 );
               },
               separatorBuilder: (_, index) => const SizedBox(
                 width: 10,
               ),
-              itemCount: categories.length,
+              itemCount: appData.categories.length,
+            ),
+          ),
+          //Grid
+          Expanded(
+            child: GridView.builder(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+              physics: const BouncingScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
+                childAspectRatio: 9 / 11.5
+              ),
+              itemCount: appData.items.length,
+              itemBuilder: (_, index){
+                return Container(
+                  
+                  color: Colors.red,);
+              },
             ),
           ),
         ],
